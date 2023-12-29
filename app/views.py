@@ -44,3 +44,27 @@ def insert_accessrecord(request):
         d4={'accessrecords':QLAO}
         return render(request,'display_accessrecord.html',d4)
     return render(request,'insert_accessrecord.html',d3)
+
+def select_multiple_webpage(request):
+    QLTO=Topic.objects.all()
+    d={'topics':QLTO}
+    if request.method == 'POST':
+        topiclist=request.POST.getlist('tn')
+        QLWO=Webpage.objects.none()
+        for i in topiclist:
+            QLWO=QLWO|Webpage.objects.filter(topic_name=i)
+        d1={'webpages':QLWO}
+        return render(request,'display_webpage.html',d1)
+    return render(request,'select_multiple_webpage.html',d)
+
+def select_multiple_accessrecord(request):
+    QLWO=Webpage.objects.all()
+    d={'webpages':QLWO}
+    if request.method == 'POST':
+        webpagelist=request.POST.getlist('na')
+        QLAO=AccessRecord.objects.none()
+        for i in webpagelist:
+            QLAO=QLAO|AccessRecord.objects.filter(name=i)
+        d1={'accessrecord':QLAO}
+        return render(request,'display_accessrecord.html',d1)
+    return render(request,'select_multiple_accessrecord.html',d)
