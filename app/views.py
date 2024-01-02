@@ -73,3 +73,8 @@ def checkBox(request):
     QLTO = Topic.objects.all()
     d = {'topics':QLTO}
     return render(request,'checkBox.html',d)
+
+def checkBoxes(request):
+    QLWO = Webpage.objects.all()
+    d={'webpages':QLWO}
+    return render(request,'checkBoxes.html',d)
