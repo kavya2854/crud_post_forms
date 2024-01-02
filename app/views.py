@@ -65,6 +65,11 @@ def select_multiple_accessrecord(request):
         QLAO=AccessRecord.objects.none()
         for i in webpagelist:
             QLAO=QLAO|AccessRecord.objects.filter(name=i)
-        d1={'accessrecord':QLAO}
+        d1={'accessrecords':QLAO}
         return render(request,'display_accessrecord.html',d1)
     return render(request,'select_multiple_accessrecord.html',d)
+
+def checkBox(request):
+    QLTO = Topic.objects.all()
+    d = {'topics':QLTO}
+    return render(request,'checkBox.html',d)
